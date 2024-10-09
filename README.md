@@ -44,7 +44,7 @@ Los datos se estan tranmitiendo en little endian ya que el dato que se se envia 
 
 # Ejercicio 5
 transmitidos en little endian
- ```
+ ``` c++
 void setup() {
     Serial.begin(115200);
 }
@@ -62,7 +62,7 @@ void loop() {
 }
 ```
 transmitidos en big endian
-```
+``` c++
 void setup() {
     Serial.begin(115200);
 }

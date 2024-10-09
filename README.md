@@ -32,12 +32,11 @@ Los datos se estan tranmitiendo en little endian ya que el dato que se se envia 
 
       if(Serial.available()) {
           if(Serial.read() == 's') {
-              uint8_t *ptr = (uint8_t *) &num;
-              // Enviar en orden inverso (big-endian)
-              Serial.write(ptr[3]); // Byte más significativo
+              uint8_t *ptr = (uint8_t *) &num
+              Serial.write(ptr[3]); 
               Serial.write(ptr[2]);
               Serial.write(ptr[1]);
-              Serial.write(ptr[0]); // Byte menos significativo
+              Serial.write(ptr[0]); 
           }
       }
   }

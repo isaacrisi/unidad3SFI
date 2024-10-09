@@ -32,7 +32,7 @@ Los datos se estan tranmitiendo en little endian ya que el dato que se se envia 
 
       if(Serial.available()) {
           if(Serial.read() == 's') {
-              uint8_t *ptr = (uint8_t *) &num
+              uint8_t *ptr = (uint8_t *) &num;
               Serial.write(ptr[3]); 
               Serial.write(ptr[2]);
               Serial.write(ptr[1]);
@@ -41,3 +41,47 @@ Los datos se estan tranmitiendo en little endian ya que el dato que se se envia 
       }
   }
  ```
+
+# Ejercicio 5
+transmitidos en little endian
+ ```
+void setup() {
+    Serial.begin(115200);
+}
+
+void loop() {
+    static float num1 = 2569.2134;
+    static float num2 = 123.456;
+
+    if (Serial.available()) {
+        if (Serial.read() == 's') {
+            Serial.write((uint8_t *)&num1, 4);  // Primer número
+            Serial.write((uint8_t *)&num2, 4);  // Segundo número
+        }
+    }
+}
+```
+transmitidos en big endian
+```
+void setup() {
+    Serial.begin(115200);
+}
+
+void loop() {
+    static float num1 = 2569.2134;
+    static float num2 = 123.456;
+
+    if (Serial.available()) {
+        if (Serial.read() == 's') {
+            uint8_t *ptr1 = (uint8_t *)&num1;
+            uint8_t *ptr2 = (uint8_t *)&num2;
+
+            Serial.write(ptr1[3]); Serial.write(ptr1[2]); Serial.write(ptr1[1]); Serial.write(ptr1[0]);  // num1
+            Serial.write(ptr2[3]); Serial.write(ptr2[2]); Serial.write(ptr2[1]); Serial.write(ptr2[0]);  // num2
+        }
+    }
+}
+```
+
+
+
